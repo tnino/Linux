@@ -148,11 +148,9 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
 	Quit postgreSQL postgres=# \q
 
 Exit from user  "postgres"
-exit
+	exit
 
-Installing Git:
-Install git, clone and setup your Catalog App project.
-
+Installing Git and clone process:
 	sudo apt-get install git
 	cd /var/www to move to the /var/www directory
 Create the application directory 
@@ -169,20 +167,22 @@ Rename catalog.py to __init__.py
 	sudo mv catalog.py __init__.py
 Edit database_setup_catalog.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')====
 
-Install pip 
+Install pip:
 	sudo apt-get install python-pip
-Use pip to install dependencies 
+Use pip to install dependencies: 
 	sudo pip install -r requirements.txt
-Install psycopg2 
+Install psycopg2:
 	sudo apt-get -qqy install postgresql python-psycopg2
-Create database schema 
+Create database schema:
 	sudo python database_setup_catalog.py
-Configure and Enable a New Virtual Host
-Create FlaskApp.conf to edit: sudo nano /etc/apache2/sites-available/FlaskApp.conf
 
-Add the following lines of code to the file to configure the virtual host.
+Enable a New Virtual Host
+Create FlaskApp.conf to edit: 
+	sudo nano /etc/apache2/sites-available/FlaskApp.conf
 
-<VirtualHost *:80>
+You will need to copy and paste the following lines of code to the file to configure the virtual host:
+
+    <VirtualHost *:80>
 	ServerName 18.221.209.63
 	ServerAdmin pphang804@gmail.com
 	WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
@@ -198,34 +198,39 @@ Add the following lines of code to the file to configure the virtual host.
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	LogLevel warn
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-Enable the virtual host with the following command: sudo a2ensite FlaskApp
+  </VirtualHost>
 
-Create the .wsgi File
-Create the .wsgi File under /var/www/FlaskApp:
+Enable the virtual host with:
+	sudo a2ensite FlaskApp
 
-cd /var/www/FlaskApp
-sudo nano flaskapp.wsgi 
-Add the following lines of code to the flaskapp.wsgi file:
+Create the .wsgi File under:
+	/var/www/FlaskApp:
+	cd /var/www/FlaskApp
+	sudo nano flaskapp.wsgi 
 
-#!/usr/bin/python
-import sys
-import logging
-logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/var/www/FlaskApp/")
+You will need to copy and paste the following lies of code to the file to the flaskapp.wsgi file:
 
-from FlaskApp import app as application
-application.secret_key = 'Add your secret key'
-Restart Apache
-Restart Apache sudo service apache2 restart
+	#!/usr/bin/python
+	import sys
+	import logging
+	logging.basicConfig(stream=sys.stderr)
+	sys.path.insert(0,"/var/www/FlaskApp/")
+
+In theFlaskApp import app as application ass yourr secret key
+	application.secret_key = 'Add your secret key'
+
+You need to restart Apache:
+	 sudo service apache2 restart
+
+Software/Packages that you will use and need to install during this project:
+	Github
+	Postgresql
+	Apache2
+	Python mod_wsgi
+
 References:
 https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
 
 https://help.ubuntu.com/community/SSH/OpenSSH/Keys
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
-
-Software/Packages Used
--Postgresql
--apache2
--Python mod_wsgi
