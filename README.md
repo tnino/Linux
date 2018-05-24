@@ -1,10 +1,16 @@
-# Linux
-Linux server
+Linux project- Catalog project
 
- The IP address and SSH port so your server can be accessed by the reviewer.
-  Public IP: 18.219.15.8
-  User name:ubuntu
-  Port:2222
+Objetive: 
+In this project the Linux virtual machine  was configurated * to load the the itemm catlog website (prviews project 3) 
+to be configurated  with the server. 
+
+The IP address and SSH port 
+ Public IP: 18.219.15.8
+ User name:ubuntu
+ Port:2222
+ 
+ Please visit http://18.221.209.63 for the website deployed8.
+ 
 ii. The complete URL to your hosted web application.
 iii. A summary of software you installed and configuration changes made.
 iv. A list of any third-party resources you made use of to complete this project.
@@ -15,6 +21,32 @@ During the submission process, paste the contents of the grader user's SSH key i
 
 
 In this project, a Linux virtual machine needs to be configurated to support the Item Catalog website.
+
+You can visit http://18.221.209.63 for the website deployed.
+
+Tasks
+	Launch your Virtual Machine with your Udacity account
+	Follow the instructions provided to SSH into your server
+	Create a new user named grader
+	Give the grader the permission to sudo
+	Update all currently installed packages
+	Change the SSH port from 22 to 2200
+	Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
+	Configure the local timezone to UTC
+	Install and configure Apache to serve a Python mod_wsgi application
+	Install and configure PostgreSQL:
+	Do not allow remote connections
+	Create a new user named catalog that has limited permissions to your catalog application database
+	Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it 	functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git 			directory is not publicly accessible via a browser!
+	Launch Virtual Machine
+	Instructions for SSH access to the instance
+	Download Private Key below
+
+Move the private key file into the folder ~/.ssh (where ~ is your environment's home directory). So if you downloaded the file to the Downloads folder, just execute the following command in your terminal. mv ~/Downloads/udacity_key.rsa ~/.ssh/
+
+Open your terminal and type in chmod 600 ~/.ssh/udacity_key.rsa
+-----------------
+
 
 You can visit http://18.221.209.63 for the website deployed.
 
@@ -38,64 +70,61 @@ Download Private Key below
 
 Move the private key file into the folder ~/.ssh (where ~ is your environment's home directory). So if you downloaded the file to the Downloads folder, just execute the following command in your terminal. mv ~/Downloads/udacity_key.rsa ~/.ssh/
 
-Open your terminal and type in chmod 600 ~/.ssh/udacity_key.rsa
+On your terminal type in :
+	chmod 600 ~/.ssh/udacity_key.rsa
+	ssh -i ~/.ssh/udacity_key.rsa root@18.221.209.63
 
-In your terminal, type in ssh -i ~/.ssh/udacity_key.rsa root@18.221.209.63
+Environment Information:
+Public IP Address: 18.218.121.98
 
-Development Environment Information
+Create a new user named Grader:
+	sudo adduser grader
+	vim /etc/sudoers
+	touch /etc/sudoers.d/grader
+	vim /etc/sudoers.d/grader, type in grader ALL=(ALL:ALL) ALL, save and quit
+	Set ssh login using keys
+	generate keys on local machine usingssh-keygen ; then save the private key in ~/.ssh on local machine
 
-Public IP Address
-
-18.218.121.98
-
-Create a new user named grader
-sudo adduser grader
-vim /etc/sudoers
-touch /etc/sudoers.d/grader
-vim /etc/sudoers.d/grader, type in grader ALL=(ALL:ALL) ALL, save and quit
-Set ssh login using keys
-generate keys on local machine usingssh-keygen ; then save the private key in ~/.ssh on local machine
-
-deploy public key on developement enviroment
+Deploy public key on developement enviroment
 
 On you virtual machine:
-
-$ su - grader
-$ mkdir .ssh
-$ touch .ssh/authorized_keys
-$ vim .ssh/authorized_keys
+	$ su - grader
+	$ mkdir .ssh
+	$ touch .ssh/authorized_keys
+	$ vim .ssh/authorized_keys
 Copy the public key generated on your local machine to this file and save
 
-$ chmod 700 .ssh
-$ chmod 644 .ssh/authorized_keys
-reload SSH using service ssh restart
+	$ chmod 700 .ssh
+	$ chmod 644 .ssh/authorized_keys
+reload SSH using service
+	ssh restart
 
 now you can use ssh to login with the new user you created
 
-ssh -i [privateKeyFilename] grader@18.221.209.63
+	ssh -i [privateKeyFilename] grader@18.221.209.63
 
 Update all currently installed packages
-sudo apt-get update
-sudo apt-get upgrade
+	sudo apt-get update
+	sudo apt-get upgrade
 Change the SSH port from 22 to 2200
-Use sudo vim /etc/ssh/sshd_config and then change Port 22 to Port 2200 , save & quit.
+	Use sudo vim /etc/ssh/sshd_config and then change Port 22 to Port 2200 , save & quit.
 Reload SSH using sudo service ssh restart
-Configure the Uncomplicated Firewall (UFW)
-Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
+	Configure the Uncomplicated Firewall (UFW)
+	Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
 
-sudo ufw allow 2200/tcp
-sudo ufw allow 80/tcp
-sudo ufw allow 123/udp
-sudo ufw enable 
-Configure the local timezone to UTC
-Configure the time zone sudo dpkg-reconfigure tzdata
-It is already set to UTC.
-Install and configure Apache to serve a Python mod_wsgi application
-Install Apache sudo apt-get install apache2
-Install mod_wsgi sudo apt-get install python-setuptools libapache2-mod-wsgi
-Restart Apache sudo service apache2 restart
-Install and configure PostgreSQL
-Install PostgreSQL sudo apt-get install postgresql
+	sudo ufw allow 2200/tcp
+	sudo ufw allow 80/tcp
+	sudo ufw allow 123/udp
+	sudo ufw enable 
+	Configure the local timezone to UTC
+	Configure the time zone sudo dpkg-reconfigure tzdata
+	It is already set to UTC.
+	Install and configure Apache to serve a Python mod_wsgi application
+	Install Apache sudo apt-get install apache2
+	Install mod_wsgi sudo apt-get install python-setuptools libapache2-mod-wsgi
+	Restart Apache sudo service apache2 restart
+	Install and configure PostgreSQL
+	Install PostgreSQL sudo apt-get install postgresql
 
 Check if no remote connections are allowed sudo vim /etc/postgresql/9.5/main/pg_hba.conf
 
