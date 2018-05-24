@@ -1,89 +1,65 @@
-Linux project- Catalog project
+**Linux project- Catalog project
 
-Objetive: 
-In this project the Linux virtual machine  was configurated * to load the the itemm catlog website (prviews project 3) 
-to be configurated  with the server. 
+**Objetive: 
 
-The IP address and SSH port 
- Public IP: 18.219.15.8
+In this project the Linux virtual machine was set up and to load the the itemm catalog website (Preview Udacity project 3)
+https://github.com/tnino/Catalog-project-1
+to be configurated with the server. 
+
+**The IP address and SSH port 
+
+ Public IP: 18.191.52.125 
  User name:ubuntu
  Port:2222
  
- Please visit http://18.221.209.63 for the website deployed8.
- 
-ii. The complete URL to your hosted web application.
-iii. A summary of software you installed and configuration changes made.
-iv. A list of any third-party resources you made use of to complete this project.
+You can visit http://18.191.52.125 for the website deployed.
 
-Locate the SSH key you created for the grader user.
+**These were the initial instructions provided, please follow them to get started:
 
-During the submission process, paste the contents of the grader user's SSH key into the "Notes to Reviewer" field.
-
-
-In this project, a Linux virtual machine needs to be configurated to support the Item Catalog website.
-
-You can visit http://18.221.209.63 for the website deployed.
-
-Tasks
-	Launch your Virtual Machine with your Udacity account
-	Follow the instructions provided to SSH into your server
-	Create a new user named grader
-	Give the grader the permission to sudo
-	Update all currently installed packages
-	Change the SSH port from 22 to 2200
-	Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
-	Configure the local timezone to UTC
-	Install and configure Apache to serve a Python mod_wsgi application
-	Install and configure PostgreSQL:
-	Do not allow remote connections
-	Create a new user named catalog that has limited permissions to your catalog application database
-	Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it 	functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git 			directory is not publicly accessible via a browser!
-	Launch Virtual Machine
-	Instructions for SSH access to the instance
-	Download Private Key below
-
-Move the private key file into the folder ~/.ssh (where ~ is your environment's home directory). So if you downloaded the file to the Downloads folder, just execute the following command in your terminal. mv ~/Downloads/udacity_key.rsa ~/.ssh/
-
-Open your terminal and type in chmod 600 ~/.ssh/udacity_key.rsa
------------------
+1-Launch your Virtual Machine with your Udacity account
+2-Follow the instructions provided to SSH into your server
+3-Create a new user named grader
+4-Give the grader the permission to sudo
+5-Update all currently installed packages
+6-Change the SSH port from 22 to 2200
+7-Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
+8-Configure the local timezone to UTC
+9-Install and configure Apache to serve a Python mod_wsgi application
+10-Install and configure PostgreSQL
+11-Do not allow remote connections
+12-Create a new user named catalog that has limited permissions to your catalog application database
+13-Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
 
 
-You can visit http://18.221.209.63 for the website deployed.
 
-Tasks
-Launch your Virtual Machine with your Udacity account
-Follow the instructions provided to SSH into your server
-Create a new user named grader
-Give the grader the permission to sudo
-Update all currently installed packages
-Change the SSH port from 22 to 2200
-Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
-Configure the local timezone to UTC
-Install and configure Apache to serve a Python mod_wsgi application
-Install and configure PostgreSQL:
-Do not allow remote connections
-Create a new user named catalog that has limited permissions to your catalog application database
-Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
 Launch Virtual Machine
-Instructions for SSH access to the instance
-Download Private Key below
+**Instructions for SSH access to the instance
 
-Move the private key file into the folder ~/.ssh (where ~ is your environment's home directory). So if you downloaded the file to the Downloads folder, just execute the following command in your terminal. mv ~/Downloads/udacity_key.rsa ~/.ssh/
+Download Private Key below
+	Move the private key file into the folder ~/.ssh 
+	(where ~ is your environment's home directory).
+
+from where you saved the file, in this case the Downloads folder, type this command in your terminal:
+	mv ~/Downloads/udacity_key.rsa ~/.ssh/
 
 On your terminal type in :
 	chmod 600 ~/.ssh/udacity_key.rsa
-	ssh -i ~/.ssh/udacity_key.rsa root@18.221.209.63
+	ssh -i ~/.ssh/udacity_key.rsa root@18.191.52.125
 
 Environment Information:
-Public IP Address: 18.218.121.98
+Public IP Address: 18.191.52.125
 
 Create a new user named Grader:
 	sudo adduser grader
 	vim /etc/sudoers
 	touch /etc/sudoers.d/grader
-	vim /etc/sudoers.d/grader, type in grader ALL=(ALL:ALL) ALL, save and quit
+	vim /etc/sudoers.d/grader, 
+type in grader 
+	ALL=(ALL:ALL) ALL
+		save and quit
 	Set ssh login using keys
-	generate keys on local machine usingssh-keygen ; then save the private key in ~/.ssh on local machine
+	generate keys on local machine usingssh-keygen  
+	then save the private key in ~/.ssh on local machine
 
 Deploy public key on developement enviroment
 
@@ -93,25 +69,24 @@ On you virtual machine:
 	$ touch .ssh/authorized_keys
 	$ vim .ssh/authorized_keys
 Copy the public key generated on your local machine to this file and save
-
 	$ chmod 700 .ssh
-	$ chmod 644 .ssh/authorized_keys
+	$ chmod 644 .ssh/authorized_key
 reload SSH using service
 	ssh restart
 
-now you can use ssh to login with the new user you created
-
-	ssh -i [privateKeyFilename] grader@18.221.209.63
+Now you can use ssh to login with the new user you created
+	ssh -i [privateKeyFilename] grader@172-26-5-48
 
 Update all currently installed packages
 	sudo apt-get update
 	sudo apt-get upgrade
+	
 Change the SSH port from 22 to 2200
 	Use sudo vim /etc/ssh/sshd_config and then change Port 22 to Port 2200 , save & quit.
+
 Reload SSH using sudo service ssh restart
 	Configure the Uncomplicated Firewall (UFW)
 	Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
-
 	sudo ufw allow 2200/tcp
 	sudo ufw allow 80/tcp
 	sudo ufw allow 123/udp
@@ -136,12 +111,11 @@ Get into postgreSQL
 	shell psql
 
 Create a new database named catalog and create a new user named catalog in postgreSQL shell
-
 	postgres=# CREATE DATABASE catalog;
 	postgres=# CREATE USER catalog;
 	Set a password for user catalog
 
-postgres=# ALTER ROLE catalog WITH PASSWORD 'password';
+postgres=# ALTER ROLE catalog WITH PASSWORD 'password'
 Give user "catalog" permission to "catalog" application database
 
 postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
