@@ -126,41 +126,57 @@ Reload SSH using sudo service ssh restart
 	Install and configure PostgreSQL
 	Install PostgreSQL sudo apt-get install postgresql
 
-Check if no remote connections are allowed sudo vim /etc/postgresql/9.5/main/pg_hba.conf
+Check if no remote connections are allowed 
+	sudo vim /etc/postgresql/9.5/main/pg_hba.conf
 
-Login as user "postgres" sudo su - postgres
+Login as user "postgres" 
+	sudo su - postgres
 
-Get into postgreSQL shell psql
+Get into postgreSQL 
+	shell psql
 
 Create a new database named catalog and create a new user named catalog in postgreSQL shell
 
-postgres=# CREATE DATABASE catalog;
-postgres=# CREATE USER catalog;
-Set a password for user catalog
+	postgres=# CREATE DATABASE catalog;
+	postgres=# CREATE USER catalog;
+	Set a password for user catalog
 
 postgres=# ALTER ROLE catalog WITH PASSWORD 'password';
 Give user "catalog" permission to "catalog" application database
 
 postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
-Quit postgreSQL postgres=# \q
+	Quit postgreSQL postgres=# \q
 
-Exit from user "postgres"
-
+Exit from user  "postgres"
 exit
+
+Installing Git:
 Install git, clone and setup your Catalog App project.
-Install Git using sudo apt-get install git
-Use cd /var/www to move to the /var/www directory
-Create the application directory sudo mkdir FlaskApp
-Move inside this directory using cd FlaskApp
-Clone the Catalog App to the virtual machine git clone https://github.com/skphi13/catalog.git
-Rename the project's name sudo mv ./catalog ./FlaskApp
-Move to the inner FlaskApp directory using cd FlaskApp
-Rename catalog.py to __init__.py using sudo mv catalog.py __init__.py
-Edit database_setup_catalog.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')
-Install pip sudo apt-get install python-pip
-Use pip to install dependencies sudo pip install -r requirements.txt
-Install psycopg2 sudo apt-get -qqy install postgresql python-psycopg2
-Create database schema sudo python database_setup_catalog.py
+
+	sudo apt-get install git
+	cd /var/www to move to the /var/www directory
+Create the application directory 
+	sudo mkdir FlaskApp
+Move inside this directory using 
+	cd FlaskApp
+Clone the Catalog App to the virtual machine 
+	git clone https://github.com/skphi13/catalog.git--------
+Rename the project's name 
+	sudo mv ./catalog ./FlaskApp
+Move to the inner FlaskApp directory 
+	cd FlaskApp
+Rename catalog.py to __init__.py 
+	sudo mv catalog.py __init__.py
+Edit database_setup_catalog.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')====
+
+Install pip 
+	sudo apt-get install python-pip
+Use pip to install dependencies 
+	sudo pip install -r requirements.txt
+Install psycopg2 
+	sudo apt-get -qqy install postgresql python-psycopg2
+Create database schema 
+	sudo python database_setup_catalog.py
 Configure and Enable a New Virtual Host
 Create FlaskApp.conf to edit: sudo nano /etc/apache2/sites-available/FlaskApp.conf
 
