@@ -30,12 +30,12 @@ You can visit http://18.191.52.125 for the website deployed.
 12-Create a new user named catalog that has limited permissions to your catalog application database
 13-Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
 
-
-
+Follow al the instructions
 Launch Virtual Machine
 **Instructions for SSH access to the instance
 
-Download Private Key below
+**Download Private Key below
+	
 	Move the private key file into the folder ~/.ssh 
 	(where ~ is your environment's home directory).
 
@@ -49,7 +49,8 @@ On your terminal type in :
 Environment Information:
 Public IP Address: 18.191.52.125
 
-Create a new user named Grader:
+**Create a new user named Grader:
+	
 	sudo adduser grader
 	vim /etc/sudoers
 	touch /etc/sudoers.d/grader
@@ -61,7 +62,7 @@ type in grader
 	generate keys on local machine usingssh-keygen  
 	then save the private key in ~/.ssh on local machine
 
-Deploy public key on developement enviroment
+**Deploy public key on developement enviroment
 
 On you virtual machine:
 	$ su - grader
@@ -77,7 +78,8 @@ reload SSH using service
 Now you can use ssh to login with the new user you created
 	ssh -i [privateKeyFilename] grader@172-26-5-48
 
-Update all currently installed packages
+**Update all currently installed packages
+
 	sudo apt-get update
 	sudo apt-get upgrade
 	
@@ -101,16 +103,20 @@ Reload SSH using sudo service ssh restart
 	Install and configure PostgreSQL
 	Install PostgreSQL sudo apt-get install postgresql
 
-Check if no remote connections are allowed 
+**Check if no remote connections are allowed 
+	
 	sudo vim /etc/postgresql/9.5/main/pg_hba.conf
 
-Login as user "postgres" 
+**Login as user "postgres" 
+	
 	sudo su - postgres
 
-Get into postgreSQL 
+**Get into postgreSQL 
+	
 	shell psql
 
-Create a new database named catalog and create a new user named catalog in postgreSQL shell
+**Create a new database named catalog and create a new user named catalog in postgreSQL shell
+	
 	postgres=# CREATE DATABASE catalog;
 	postgres=# CREATE USER catalog;
 	Set a password for user catalog
@@ -124,15 +130,21 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
 Exit from user  "postgres"
 	exit
 
-Installing Git and clone process:
+**Installing Git and clone process:
+	
 	sudo apt-get install git
 	cd /var/www to move to the /var/www directory
-Create the application directory 
+
+**Create the application directory 
+	
 	sudo mkdir FlaskApp
+
 Move inside this directory using 
 	cd FlaskApp
-Clone the Catalog App to the virtual machine 
-	git clone https://github.com/skphi13/catalog.git--------
+**Clone the Catalog App to the virtual machine 
+	
+	git clone https://github.com/tnino/Catalog-project-1
+	
 Rename the project's name 
 	sudo mv ./catalog ./FlaskApp
 Move to the inner FlaskApp directory 
@@ -141,7 +153,8 @@ Rename catalog.py to __init__.py
 	sudo mv catalog.py __init__.py
 Edit database_setup_catalog.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')====
 
-Install pip:
+**Install pip:
+	
 	sudo apt-get install python-pip
 Use pip to install dependencies: 
 	sudo pip install -r requirements.txt
@@ -150,8 +163,10 @@ Install psycopg2:
 Create database schema:
 	sudo python database_setup_catalog.py
 
-Enable a New Virtual Host
-Create FlaskApp.conf to edit: 
+**Enable a New Virtual Host
+
+**Create FlaskApp.conf to edit: 
+
 	sudo nano /etc/apache2/sites-available/FlaskApp.conf
 
 You will need to copy and paste the following lines of code to the file to configure the virtual host:
@@ -177,12 +192,13 @@ You will need to copy and paste the following lines of code to the file to confi
 Enable the virtual host with:
 	sudo a2ensite FlaskApp
 
-Create the .wsgi File under:
+**Create the .wsgi File under:
+	
 	/var/www/FlaskApp:
 	cd /var/www/FlaskApp
 	sudo nano flaskapp.wsgi 
 
-You will need to copy and paste the following lies of code to the file to the flaskapp.wsgi file:
+You will need to copy and paste the following lines of code to the file to the flaskapp.wsgi file:
 
 	#!/usr/bin/python
 	import sys
@@ -193,18 +209,24 @@ You will need to copy and paste the following lies of code to the file to the fl
 In theFlaskApp import app as application ass yourr secret key
 	application.secret_key = 'Add your secret key'
 
-You need to restart Apache:
+**You need to restart Apache:
+
 	 sudo service apache2 restart
 
-Software/Packages that you will use and need to install during this project:
+**Software/Packages that you will use and need to install during this project:
+
 	Github
 	Postgresql
 	Apache2
 	Python mod_wsgi
 
-References:
-https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+**References:
 
-https://help.ubuntu.com/community/SSH/OpenSSH/Keys
+https://devops.profitbricks.com/tutorials/deploy-a-flask-application-on-ubuntu-1404/
 
-https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
+https://www.ubuntu.com/server
+
+https://blog.jsinh.in/how-to-install-and-use-postgresql-on-ubuntu-14-04/
+
+https://services.github.com/on-demand/github-cli/clone-repo-cli
+
