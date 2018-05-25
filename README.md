@@ -230,3 +230,5 @@ https://blog.jsinh.in/how-to-install-and-use-postgresql-on-ubuntu-14-04/
 
 https://services.github.com/on-demand/github-cli/clone-repo-cli
 
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+
