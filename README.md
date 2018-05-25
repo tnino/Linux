@@ -232,3 +232,11 @@ https://services.github.com/on-demand/github-cli/clone-repo-cli
 
 https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
 
+https://stackoverflow.com/questions/31809786/django-wsgi-setup-causing-permission-denied-issues-on-centos-7
+
+https://community.ubuntu.com/c/support-help-requests
+
+https://stackoverflow.com/questions/31809786/django-wsgi-setup-causing-permission-denied-issues-on-centos-7
+
+https://discussions.udacity.com/t/issue-getting-my-application-to-run-on-linux-server/473507/80
+
