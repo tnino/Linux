@@ -8,7 +8,7 @@ to be configurated with the server.
 
 **The IP address and SSH port** 
 
- Public IP: 18.191.52.125 
+ Public IP: 8.188.130.165
  User name:ubuntu
  Port:2200
  
