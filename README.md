@@ -10,9 +10,9 @@ to be configurated with the server.
 
  Public IP: 18.191.52.125 
  User name:ubuntu
- Port:2222
+ Port:2200
  
-You can visit http://18.191.52.125 for the website deployed.
+You can visit http://18.188.130.16 for the website deployed.
 
 **These were the initial instructions provided, please follow them to get started:**
 
@@ -35,7 +35,6 @@ Launch Virtual Machine
 **Instructions for SSH access to the instance**
 
 **Download Private Key below**
-	
 	Move the private key file into the folder ~/.ssh 
 	(where ~ is your environment's home directory).
 
@@ -44,20 +43,21 @@ from where you saved the file, in this case the Downloads folder, type this comm
 
 On your terminal type in :
 	chmod 600 ~/.ssh/udacity_key.rsa
-	ssh -i ~/.ssh/udacity_key.rsa root@18.191.52.125
+	ssh -i ~/.ssh/udacity_key.rsa root@18.188.130.165
 
 Environment Information:
-Public IP Address: 18.191.52.125
+Public IP Address:18.188.130.165
 
 **Create a new user named Grader:**
-	
 	sudo adduser grader
 	vim /etc/sudoers
 	touch /etc/sudoers.d/grader
 	vim /etc/sudoers.d/grader, 
+
 type in grader 
 	ALL=(ALL:ALL) ALL
-		save and quit
+	save and quit
+	
 	Set ssh login using keys
 	generate keys on local machine usingssh-keygen  
 	then save the private key in ~/.ssh on local machine
@@ -83,10 +83,10 @@ Now you can use ssh to login with the new user you created
 	sudo apt-get update
 	sudo apt-get upgrade
 	
-Change the SSH port from 22 to 2200
+**Change the SSH port from 22 to 2200**
 	Use sudo vim /etc/ssh/sshd_config and then change Port 22 to Port 2200 , save & quit.
 
-Reload SSH using sudo service ssh restart
+**Reload SSH using sudo service ssh restart**
 	Configure the Uncomplicated Firewall (UFW)
 	Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
 	sudo ufw allow 2200/tcp
@@ -166,7 +166,6 @@ Create database schema:
 **Enable a New Virtual Host**
 
 **Create FlaskApp.conf to edit:** 
-
 	sudo nano /etc/apache2/sites-available/FlaskApp.conf
 
 You will need to copy and paste the following lines of code to the file to configure the virtual host:
