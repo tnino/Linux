@@ -57,7 +57,6 @@ Public IP Address:18.188.130.165
 type in grader 
 	ALL=(ALL:ALL) ALL
 	save and quit
-	
 	Set ssh login using keys
 	generate keys on local machine usingssh-keygen  
 	then save the private key in ~/.ssh on local machine
@@ -79,7 +78,6 @@ Now you can use ssh to login with the new user you created
 	ssh -i [privateKeyFilename] grader@172-26-5-48
 
 **Update all currently installed packages**
-
 	sudo apt-get update
 	sudo apt-get upgrade
 	
@@ -104,19 +102,15 @@ Now you can use ssh to login with the new user you created
 	Install PostgreSQL sudo apt-get install postgresql
 
 **Check if no remote connections are allowed** 
-	
 	sudo vim /etc/postgresql/9.5/main/pg_hba.conf
 
 **Login as user "postgres"** 
-	
 	sudo su - postgres
 
 **Get into postgreSQL** 
-	
 	shell psql
 
 **Create a new database named catalog and create a new user named catalog in postgreSQL shell**
-	
 	postgres=# CREATE DATABASE catalog;
 	postgres=# CREATE USER catalog;
 	Set a password for user catalog
@@ -131,18 +125,15 @@ Exit from user  "postgres"
 	exit
 
 **Installing Git and clone process:**
-	
 	sudo apt-get install git
 	cd /var/www to move to the /var/www directory
 
 **Create the application directory** 
-	
 	sudo mkdir FlaskApp
 
 Move inside this directory using 
 	cd FlaskApp
 **Clone the Catalog App to the virtual machine** 
-	
 	git clone https://github.com/tnino/Catalog-project-1
 	
 Rename the project's name 
@@ -154,7 +145,6 @@ Rename catalog.py to __init__.py
 Edit database_setup_catalog.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')====
 
 **Install pip:**
-	
 	sudo apt-get install python-pip
 Use pip to install dependencies: 
 	sudo pip install -r requirements.txt
@@ -169,8 +159,7 @@ Create database schema:
 	sudo nano /etc/apache2/sites-available/FlaskApp.conf
 
 You will need to copy and paste the following lines of code to the file to configure the virtual host:
-
-    <VirtualHost *:80>
+     <VirtualHost *:80>
 	ServerName 18.221.209.63
 	ServerAdmin pphang804@gmail.com
 	WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
@@ -192,13 +181,11 @@ Enable the virtual host with:
 	sudo a2ensite FlaskApp
 
 **Create the .wsgi File under:
-	
 	/var/www/FlaskApp:
 	cd /var/www/FlaskApp
 	sudo nano flaskapp.wsgi 
 
 You will need to copy and paste the following lines of code to the file to the flaskapp.wsgi file:
-
 	#!/usr/bin/python
 	import sys
 	import logging
@@ -209,11 +196,9 @@ In theFlaskApp import app as application ass yourr secret key
 	application.secret_key = 'Add your secret key'
 
 **You need to restart Apache:**
-
-	 sudo service apache2 restart
+	sudo service apache2 restart
 
 **Software/Packages that you will use and need to install during this project:**
-
 	Github
 	Postgresql
 	Apache2
