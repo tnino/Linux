@@ -165,28 +165,45 @@ Move inside this directory using
 	git clone https://github.com/tnino/Catalog-project-1
 	
 Rename the project's name 
+	
 	sudo mv ./catalog ./FlaskApp
+
 Move to the inner FlaskApp directory 
+	
 	cd FlaskApp
+
 Rename catalog.py to __init__.py 
+	
 	sudo mv catalog.py __init__.py
-Edit database_setup_catalog.py and change engine = create_engine('sqlite:///toyshop.db') to engine = create_engine('postgresql://catalog:password@localhost/catalog')====
+
+Edit database_setup_catalog.py and change engine = create_engine('sqlite:///toyshop.db') to engine = 
+
+	create_engine('postgresql://catalog:password@localhost/catalog')====
 
 **Install pip:**
+	
 	sudo apt-get install python-pip
+
 Use pip to install dependencies: 
+	
 	sudo pip install -r requirements.txt
+
 Install psycopg2:
+	
 	sudo apt-get -qqy install postgresql python-psycopg2
+
 Create database schema:
+	
 	sudo python database_setup_catalog.py
 
 **Enable a New Virtual Host**
 
 **Create FlaskApp.conf to edit:** 
+	
 	sudo nano /etc/apache2/sites-available/FlaskApp.conf
 
 You will need to copy and paste the following lines of code to the file to configure the virtual host:
+     
      <VirtualHost *:80>
 	ServerName 18.221.209.63
 	ServerAdmin pphang804@gmail.com
@@ -206,14 +223,17 @@ You will need to copy and paste the following lines of code to the file to confi
   </VirtualHost>
 
 Enable the virtual host with:
+	
 	sudo a2ensite FlaskApp
 
 **Create the .wsgi File under:
+	
 	/var/www/FlaskApp:
 	cd /var/www/FlaskApp
 	sudo nano flaskapp.wsgi 
 
 You will need to copy and paste the following lines of code to the file to the flaskapp.wsgi file:
+	
 	#!/usr/bin/python
 	import sys
 	import logging
@@ -221,12 +241,15 @@ You will need to copy and paste the following lines of code to the file to the f
 	sys.path.insert(0,"/var/www/FlaskApp/")
 
 In theFlaskApp import app as application ass yourr secret key
+	
 	application.secret_key = 'Add your secret key'
 
 **You need to restart Apache:**
+	
 	sudo service apache2 restart
 
 **Software/Packages that you will use and need to install during this project:**
+	
 	Github
 	Postgresql
 	Apache2
