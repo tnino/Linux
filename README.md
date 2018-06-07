@@ -8,11 +8,11 @@ to be configurated with the server.
 
 **The IP address and SSH port** 
 
- Public IP: 8.188.130.165
+ Public IP: 52.15.160.114
  User name:ubuntu
  Port:2200
  
-You can visit http://18.188.130.16 for the website deployed.
+You can visit http://52.15.160.114 for the website deployed.
 
 **These were the initial instructions provided, please follow them to get started:**
 
@@ -47,7 +47,7 @@ from where you saved the file, in this case the Downloads folder, type this comm
 On your terminal type in :
 	
 	chmod 600 ~/.ssh/udacity_key.rsa
-	ssh -i ~/.ssh/udacity_key.rsa root@18.188.130.165
+	ssh -i ~/.ssh/udacity_key.rsa grader@52.15.160.114
 
 Environment Information:
 
@@ -88,7 +88,7 @@ reload SSH using service
 
 Now you can use ssh to login with the new user you created
 	
-	ssh -i [privateKeyFilename] grader@172-26-5-48
+	ssh -i [privateKeyFilename] grader@52.15.160.114
 
 **Update all currently installed packages**
 	
