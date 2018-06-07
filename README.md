@@ -32,29 +32,36 @@ You can visit http://18.188.130.16 for the website deployed.
 
 Follow al the instructions
 Launch Virtual Machine
+
 **Instructions for SSH access to the instance**
 
 **Download Private Key below**
+	
 	Move the private key file into the folder ~/.ssh 
 	(where ~ is your environment's home directory).
 
 from where you saved the file, in this case the Downloads folder, type this command in your terminal:
+	
 	mv ~/Downloads/udacity_key.rsa ~/.ssh/
 
 On your terminal type in :
+	
 	chmod 600 ~/.ssh/udacity_key.rsa
 	ssh -i ~/.ssh/udacity_key.rsa root@18.188.130.165
 
 Environment Information:
+
 Public IP Address:18.188.130.165
 
 **Create a new user named Grader:**
+	
 	sudo adduser grader
 	vim /etc/sudoers
 	touch /etc/sudoers.d/grader
 	vim /etc/sudoers.d/grader, 
 
 type in grader 
+	
 	ALL=(ALL:ALL) ALL
 	save and quit
 	Set ssh login using keys
@@ -64,27 +71,36 @@ type in grader
 **Deploy public key on developement enviroment**
 
 On you virtual machine:
+	
 	$ su - grader
 	$ mkdir .ssh
 	$ touch .ssh/authorized_keys
 	$ vim .ssh/authorized_keys
+
 Copy the public key generated on your local machine to this file and save
+	
 	$ chmod 700 .ssh
 	$ chmod 644 .ssh/authorized_key
+
 reload SSH using service
+	
 	ssh restart
 
 Now you can use ssh to login with the new user you created
+	
 	ssh -i [privateKeyFilename] grader@172-26-5-48
 
 **Update all currently installed packages**
+	
 	sudo apt-get update
 	sudo apt-get upgrade
 	
 **Change the SSH port from 22 to 2200**
+	
 	Use sudo vim /etc/ssh/sshd_config and then change Port 22 to Port 2200 , save & quit.
 
 **Reload SSH using sudo service ssh restart**
+	
 	Configure the Uncomplicated Firewall (UFW)
 	Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
 	sudo ufw allow 2200/tcp
@@ -102,38 +118,50 @@ Now you can use ssh to login with the new user you created
 	Install PostgreSQL sudo apt-get install postgresql
 
 **Check if no remote connections are allowed** 
+	
 	sudo vim /etc/postgresql/9.5/main/pg_hba.conf
 
 **Login as user "postgres"** 
+	
 	sudo su - postgres
 
 **Get into postgreSQL** 
+	
 	shell psql
 
 **Create a new database named catalog and create a new user named catalog in postgreSQL shell**
+	
 	postgres=# CREATE DATABASE catalog;
 	postgres=# CREATE USER catalog;
 	Set a password for user catalog
 
 postgres=# ALTER ROLE catalog WITH PASSWORD 'password'
-Give user "catalog" permission to "catalog" application database
+
+	Give user "catalog" permission to "catalog" application database
 
 postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
+	
 	Quit postgreSQL postgres=# \q
 
 Exit from user  "postgres"
+	
 	exit
 
 **Installing Git and clone process:**
+	
 	sudo apt-get install git
 	cd /var/www to move to the /var/www directory
 
 **Create the application directory** 
+	
 	sudo mkdir FlaskApp
 
 Move inside this directory using 
+	
 	cd FlaskApp
+
 **Clone the Catalog App to the virtual machine** 
+	
 	git clone https://github.com/tnino/Catalog-project-1
 	
 Rename the project's name 
